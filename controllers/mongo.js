@@ -10,5 +10,5 @@ exports.setup = function(server){
 		res.render('test');
 		
 	});
-}
+};
 
