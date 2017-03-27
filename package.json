@@ -1,11 +1,12 @@
 {
-  "name": "Project",
+  "name": "it350",
   "version": "1.0.0",
   "description": "Project Initiation Documentation: Cybersecurity Firm Database  Blake Moss, Kyle Fletcher,Cameron Meherg, Hans Farnbach Purpose of the Project      Cybersecurity firms deal with a plethora of information related to their customers, the penetration tests that are executed, and the findings of those tests relative to each client. Each client has a variety of different penetration tests that can be examined (Web Application, Network, Internal, Physical, etc.) and each test has a variety of different entities that need to be documented in an organized matter. This is important not only for the organizational sake of the cybersecurity company, but also for legal (auditing and compliance) issues that are vital for any business organization.      This project will create a comprehensive database structure for cybersecurity firms performing penetration and vulnerability tests. The database structure will enable companies to organize, query, and report on data relating to client information, pentesting teams, testing details, and exploits/weaknesses found, among other entities. The project will be implemented using a relational Mongo Database and frontend web portal that can be used to query information and compile reports.  List of Use Cases Customers Use the database in performing their own penetration tests Reference the database to check information about different kinds of penetration tests Refer to the database when finding about vulnerabilities in their own systems Firm Employees Use the database as a reference on penetration tests Reference the database when explaining vulnerabilities in a client's system Update the database to reflect new or changed vulnerabilities Assumptions This database would be used by a cybersecurity company The cybersecurity company would only have two teams to test and fix vulnerabilities Clients would hire this company to do penetration testing Clients have data that needs to be protected That Tanner The TA is the best Stakeholders Direct Employees - will use the database on a regular basis Customers - will be able to buy and use the database for their company to use Stockholders - own stock in the company and are affected directly by the success of the database Indirect Client’s customers - Will be affected by the outcome of penetration tests on a client's systems Client’s employees - Their job efficiency and daily routines will be effected by vulnerabilities in the client's system",
   "main": "db.js",
   "dependencies": {
     "ejs-locals": "^1.0.2",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "mysql": "^2.13.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,7 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/kyfletcher/IT350.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
