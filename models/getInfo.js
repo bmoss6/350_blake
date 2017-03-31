@@ -10,7 +10,7 @@ var getInfo = {};
 // the promises for getting information needed for a page
 
 getInfo.getCustomers = function(){
-	return  new Promise(function(resolve,reject){
+	return new Promise(function(resolve,reject){
 		connection.query(queries.getCustomers,function(err, rows, fields){
 			if(err) reject(err);
 			resolve(rows);
@@ -21,6 +21,50 @@ getInfo.getCustomers = function(){
 getInfo.getHackerById = function(id){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getHackerById,[id],function(err,rows,fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.getRebortByEngage = function(id){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getRebortByEngage,[id],function(err,rows,fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+getInfo.getExploits = function(){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getExploits,function(err, rows, fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.getMitm = function(){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getMitm,function(err, rows, fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.getAttacks = function(){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getAttacks,function(err, rows, fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.getApplications = function(){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getApplications,function(err, rows, fields){
 			if(err) reject(err);
 			resolve(rows);
 		});
