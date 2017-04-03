@@ -3,12 +3,14 @@
 var queries = {};
 
 queries.getAgreements = 'SELECT * FROM agreement';
+// ? the name for the signer's agreements we want
+queries.getAgreementsByname = 'SELECT * FrOM agreement WHERE signer = ?';
 
 queries.getSystems = 'SELECT * FROM system';
 //? is the mac of the desired system
-queries.GetSystemByMAc = 'Select * From system WHERE MAC = ?';
+queries.GetSystemByMac = 'Select * From system WHERE MAC = ?';
 //the first ? is the username the second is the password
-queries.login = 'SELECT * FROM user WHERE Username = ? AND Password = ?';
+queries.loginCustomer = 'SELECT * FROM customer WHERE username = ? AND password = ?';
 
 queries.getApplications = 'SELECT * FROM application';
 
@@ -20,7 +22,9 @@ queries.getMitm = 'SELECT * FROM mitm';
 
 queries.getDomains = 'SELECT * FROM domain';
 
-queries.getAnalyst = 'SELECT * FROM security_analyst WHERE sec_id = ?';
+queries.getAnalystById = 'SELECT * FROM security_analyst WHERE sec_id = ?';
+
+queries.getAnalysts = 'SELECT * FROM security_analyst';
 
 queries.getReports = 'SELECT * FROM report';
 

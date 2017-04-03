@@ -8,9 +8,7 @@ var server = express();
 server.engine('ejs',engine);
 	server.set('views', __dirname + '/views'); //Location of the views
   	server.set('view engine', 'ejs');
-// add more routes here for different controllers
-//eg the 'mongo' here runs them mongo controller for /mongo/anythng
-
+//setup the controller for the backend
 var controller = require('./controllers/mongo');
   //start the controller
 controller.setup(server);
