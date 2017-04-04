@@ -2,12 +2,12 @@
 var mysql = require('mysql');
 // these values need to be changed to whatever we designate as the default user
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : '192.168.231.22',
   user     : 'root',
-  password : 'Taggerung123',
+  password : 'itrocks!',
   database : 'ittfsec'
 });
- 
+
 connection.connect();
 
 exports.mysql = mysql;

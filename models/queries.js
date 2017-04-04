@@ -4,7 +4,7 @@ var queries = {};
 
 queries.getAgreements = 'SELECT * FROM agreement';
 // ? the name for the signer's agreements we want
-queries.getAgreementsByname = 'SELECT * FrOM agreement WHERE signer = ?';
+queries.getAgreementsByName = 'SELECT * FROM agreement WHERE signer = ?';
 
 queries.getSystems = 'SELECT * FROM system';
 //? is the mac of the desired system
@@ -33,5 +33,7 @@ queries.getReportbyEngage = 'SELECT * FROM report WHERE engagement = ?';
 queries.getHackerById = 'SELECT * FROM hacker WHERE hacker_id= ?';
 
 queries.getAttacks = 'SELECT * FROM attack';
+
+queries.getName = 'SELECT customer_name FROM customer WHERE username = ?';
 
 exports.queries = queries;

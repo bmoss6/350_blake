@@ -1,7 +1,7 @@
 'use strict';
 
-var db = require('../db'), 
-    mysql = db.mysql, 
+var db = require('../db'),
+    mysql = db.mysql,
     connection = db.connection;
 var sqlFile= require('./queries'), queries = sqlFile.queries;
 
@@ -13,8 +13,11 @@ getInfo.loginCustomer = function(username,password){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.loginCustomer, [username,password], function(err, rows, fields){
 			if(err) reject(err);
-			if(rows.size() !== 0)
-				resolve(rows);
+
+			if(rows){
+        console.log(rows[0].username);
+        resolve(rows[0].username);
+      }
 			else
 				reject('Password or Username are incorrect');
 		});
@@ -32,7 +35,15 @@ getInfo.getCustomers = function(){
 getInfo.getAgreementsByName = function(name){
 	return new Promise(function(resolve, reject){
 		connection.query(queries.getAgreementsByName, [name], function(err, rows, fields){
-			if(err) reject(err);
+      console.log("In the agreements" + name);
+      console.log(queries.getAgreementsByName);
+			if(err)
+      {
+        console.log(err);
+        reject(err);
+      }
+      console.log("Here are the rows");
+      console.log(rows);
 			resolve(rows);
 		});
 	});
@@ -114,6 +125,17 @@ getInfo.getApplications = function(){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getApplications,function(err, rows, fields){
 			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.getName = function(username){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getName,[username],function(err,rows,fields){
+			if(err) reject(err);
+      console.log("From GETNAMES");
+      console.log(rows[0].customer_name);
 			resolve(rows);
 		});
 	});
