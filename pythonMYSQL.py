@@ -2,22 +2,22 @@
 import MySQLdb
 
 db = MySQLdb.connect(host="localhost",    # your host, usually localhost
-                     user="root",         # your username
-                     passwd="Taggerung123",  # your password
-                     db="ittfsec")        # name of the data base
+                     user="root",         #add your username
+                     passwd="",  #add your password
+                     db="ittfsec")        #add name of the data base
 
 
 cur = db.cursor()
 
 
 tableList = [
-    'CREATE TABLE customer (customer_name VARCHAR(20));',
-    'CREATE TABLE security_analyst (sec_id VARCHAR(5), sec_name VARCHAR(20));',
+    'CREATE TABLE customer (customer_id VARCHAR(5), customer_name VARCHAR(20), password VARCHAR(40));',
+    'CREATE TABLE security_analyst (sec_id VARCHAR(5), sec_name VARCHAR(20), password VARCHAR(40));',
     'CREATE TABLE vulnerability (cve VARCHAR(13), platform VARCHAR(20), discover_date DATE);',
     'CREATE TABLE exploit (exploit_name VARCHAR(20), behavior VARCHAR(100));',
     'CREATE TABLE hacker (hacker_id VARCHAR(5), alias VARCHAR(20));',
-    'CREATE TABLE agreement (effective_date DATE, signer VARCHAR(20), scope VARCHAR(20));',
-    'CREATE TABLE report (engagement VARCHAR(20), vulnerability VARCHAR(13), action VARCHAR(50));',
+    'CREATE TABLE agreement (agreement_id VARCHAR(5),effective_date DATE, signer VARCHAR(20), scope VARCHAR(20));',
+    'CREATE TABLE report (agreement_id VARCHAR(5), engagement VARCHAR(20), vulnerability VARCHAR(13), action VARCHAR(50));',
     'CREATE TABLE attack (type VARCHAR(20));',
     'CREATE TABLE network (cidr VARCHAR(15), type VARCHAR(20));',
     'CREATE TABLE subnet (subnet_cidr VARCHAR(3));',
@@ -35,19 +35,19 @@ tableList = [
 for query in tableList:
     cur.execute(query)
 
-companyData = [("Meherg Inc."),("Moss Industries"),("Fletcher Enterprise"),("Farnbach LLC")]
+companyData = [("00001","Meherg Inc.","itrocks!"),("00002","Moss Industries","mostsecurepassword"),("00003","Fletcher Enterprise","mypassword"),("0005","Farnbach LLC","fdsmaojeq9e8qa89wqafw0")]
 
-cur.execute("INSERT INTO customer (customer_name) VALUES ('Meherg Inc.'),('Moss Industries'),('Fletcher Enterprise'),('Farnbach LLC');")
+cur.executemany("INSERT INTO customer (customer_id,customer_name,password) VALUES (%s,%s,%s);", companyData)
 
 
 secData = [
-    ("00001","Kyle"),
-    ("01234","Cameron"),
-    ("98765","Hans"),
-    ("96325","Blake")
+    ("00001","Kyle","mypassword"),
+    ("01234","Cameron","itrocks!"),
+    ("98765","Hans","fdsmaojeq9e8qa89wqafw0"),
+    ("96325","Blake","mostsecurepassword")
     ]
 
-cur.executemany("INSERT INTO security_analyst (sec_id,sec_name) VALUES (%s,%s);", secData)
+cur.executemany("INSERT INTO security_analyst (sec_id,sec_name,password) VALUES (%s,%s,%s);", secData)
 
 vulnData = [
     ("CVE-2015-0089","Windows","2015-12-05"),
@@ -70,18 +70,18 @@ hackerData = [
 cur.executemany("INSERT INTO hacker (hacker_id,alias) VALUES (%s,%s)", hackerData)
 
 agreementData = [
-    ("2016-12-05","Fletcher Enterprise", "123.236.123.255"),
-    ("2017-1-15","Moss Industries", "143.236.123.0"),
-    ("2016-3-25","Farnbach LLC", "23.96.23.255"),
-    ("2016-8-17","Meherg Inc.", "230.6.13.255")
+    ("99999","2016-12-05","Fletcher Enterprise", "123.236.123.255"),
+    ("99998","2017-1-15","Moss Industries", "143.236.123.0"),
+    ("99997","2016-3-25","Farnbach LLC", "23.96.23.255"),
+    ("99996","2016-8-17","Meherg Inc.", "230.6.13.255")
     ]
-cur.executemany("INSERT INTO agreement (effective_date,signer,scope) VALUES (%s,%s,%s)", agreementData)
+cur.executemany("INSERT INTO agreement (agreement_id,effective_date,signer,scope) VALUES (%s,%s,%s,%s)", agreementData)
 
 reportData = [
-    ("2016-12-05","CVE-2015-0089", "Change all passwords"),
-    ("2017-1-15","CVE-2017-0399", "Upgrade to supported version")
+    ("99999","2016-12-05","CVE-2015-0089", "Change all passwords"),
+    ("99998","2017-1-15","CVE-2017-0399", "Upgrade to supported version")
     ]
-cur.executemany("INSERT INTO report (engagement,vulnerability,action) VALUES (%s,%s,%s)", reportData)
+cur.executemany("INSERT INTO report (agreement_id,engagement,vulnerability,action) VALUES (%s,%s,%s,%s)", reportData)
 
 attackData = '("MITM"),("Buffer Overflow")'
 cur.execute("INSERT INTO attack (type) VALUES ('MITM'),('Buffer Overflow');")
