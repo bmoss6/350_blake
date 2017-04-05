@@ -23,6 +23,29 @@ getInfo.loginCustomer = function(username,password){
 		});
 	});
 };
+
+getInfo.loginEmployee = function(username,password){
+  console.log("IN THE LOGIN EMPLOYEE");
+  return new Promise(function(resolve,reject){
+		connection.query(queries.loginEmployee, [username,password], function(err, rows, fields){
+			if(err)
+      {
+        console.log(err);
+        reject(err);
+      }
+
+			if(rows){
+
+        console.log(rows[0].username);
+        resolve(rows[0].username);
+      }
+			else
+				reject('Password or Username are incorrect');
+		});
+	});
+};
+
+
 getInfo.getCustomers = function(){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getCustomers,function(err, rows, fields){
@@ -67,6 +90,15 @@ getInfo.getAnalystById = function(id){
 	});
 };
 
+getInfo.getAnalystByUser = function(id){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getAnalystByUser,[id],function(err,rows,fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
 getInfo.getAnalysts = function(){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getAnalysts,function(err, rows, fields){
@@ -77,9 +109,11 @@ getInfo.getAnalysts = function(){
 };
 
 getInfo.getReportByEngage = function(id){
+  console.log("In the reports by engage" +id);
 	return new Promise(function(resolve,reject){
-		connection.query(queries.getRebortByEngage,[id],function(err,rows,fields){
+		connection.query(queries.getReportbyEngage,[id],function(err,rows,fields){
 			if(err) reject(err);
+      console.log("Here should be the answers!" + rows);
 			resolve(rows);
 		});
 	});
@@ -129,6 +163,29 @@ getInfo.getApplications = function(){
 		});
 	});
 };
+
+getInfo.getAgreementInfo = function(agreement_id){
+  console.log("In agreement info part!")
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getAgreementInfo, [agreement_id], function(err, rows, fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+
+getInfo.updateStatus = function(agreement_id, cve, status){
+  console.log("In Update part!")
+	return new Promise(function(resolve,reject){
+		connection.query(queries.updateStatus, [status,agreement_id,cve], function(err, rows, fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+
 
 getInfo.getName = function(username){
 	return new Promise(function(resolve,reject){
