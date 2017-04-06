@@ -14,6 +14,16 @@ queries.loginCustomer = 'SELECT * FROM customer WHERE username = ? AND password 
 
 queries.loginEmployee = 'SELECT * FROM security_analyst WHERE username = ? AND password = ?';
 
+queries.newEmployee = 'INSERT INTO security_analyst (sec_name, password, username, sec_id) VALUES (?,?,?, NULL)';
+
+queries.addAgreement = 'INSERT INTO agreement (effective_date,signer,scope) VALUES (?,?,?)';
+
+queries.addReport = 'INSERT INTO report (agreement_id,vulnerability,action, status, report_id) VALUES (?,?,?,"Open", ?)';
+
+queries.removeAgreement = 'DELETE from agreement WHERE agreement_id = ?';
+
+queries.removeReports = 'DELETE from report WHERE agreement_id = ?';
+
 queries.getApplications = 'SELECT * FROM application';
 
 queries.getAgreementInfo = 'SELECT * FROM agreement WHERE agreement_id = ?';
@@ -42,4 +52,5 @@ queries.getName = 'SELECT customer_name FROM customer WHERE username = ?';
 
 queries.updateStatus = 'UPDATE report SET status = ? WHERE agreement_id = ? and vulnerability = ?'
 
+queries.addSamplereport = 'INSERT INTO '
 exports.queries = queries;

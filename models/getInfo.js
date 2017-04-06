@@ -24,6 +24,25 @@ getInfo.loginCustomer = function(username,password){
 	});
 };
 
+
+
+
+getInfo.addReport = function(agreement, cve,action, id){
+	return new Promise(function(resolve,reject){
+    console.log("HERE IS AGREEMENT ID");
+    console.log(agreement);
+		connection.query(queries.addReport,[agreement,cve,action, id], function(err,rows,fields){
+			if(err) reject(err);
+			resolve();
+		});
+	});
+};
+
+
+
+
+
+
 getInfo.loginEmployee = function(username,password){
   console.log("IN THE LOGIN EMPLOYEE");
   return new Promise(function(resolve,reject){
@@ -49,11 +68,66 @@ getInfo.loginEmployee = function(username,password){
 getInfo.getCustomers = function(){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getCustomers,function(err, rows, fields){
-			if(err) reject(err);
+			if(err)
+      {
+
+        reject(err);}
 			resolve(rows);
 		});
 	});
 };
+
+
+getInfo.newEmployee = function(name,username,password){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.newEmployee, [name,username,password] ,function(err, rows, fields){
+			if(err)
+      {
+        console.log("got to this part in newemployee error");
+        console.log(err);
+        reject(err);
+      }
+      console.log("GET HERE ON NEW EMp");
+      console.log(rows)
+			resolve(rows);
+		});
+	});
+};
+
+
+getInfo.removeReports = function(id){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.removeReports, [id] ,function(err, rows, fields){
+			if(err)
+      {
+        console.log("got to this part in newemployee error");
+        console.log(err);
+        reject(err);
+      }
+      console.log("GET HERE ON NEW EMp");
+      console.log(rows)
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.removeAgreement = function(id){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.removeAgreement, [id] ,function(err, rows, fields){
+			if(err)
+      {
+        console.log("got to this part in newemployee error");
+        console.log(err);
+        reject(err);
+      }
+      console.log("GET HERE ON NEW EMp");
+      console.log(rows)
+			resolve(rows);
+		});
+	});
+};
+
+
 
 getInfo.getAgreementsByName = function(name){
 	return new Promise(function(resolve, reject){
@@ -71,6 +145,22 @@ getInfo.getAgreementsByName = function(name){
 		});
 	});
 };
+
+
+getInfo.addAgreement = function(id,date,signer,scope){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.addAgreement, [id,date,signer,scope], function(err){
+			if(err) reject(err);
+			resolve();
+		});
+	});
+};
+
+
+
+
+
+
 
 getInfo.getHackerById = function(id){
 	return new Promise(function(resolve,reject){
@@ -112,7 +202,11 @@ getInfo.getReportByEngage = function(id){
   console.log("In the reports by engage" +id);
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getReportbyEngage,[id],function(err,rows,fields){
-			if(err) reject(err);
+			if(err)
+      {
+        console.log("ERROR IN THE GET REPORT BY ENGAGE!!!!!!!");
+        reject(err);
+      }
       console.log("Here should be the answers!" + rows);
 			resolve(rows);
 		});

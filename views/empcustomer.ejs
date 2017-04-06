@@ -6,11 +6,15 @@
 -->
 <html>
 	<head>
-		<title>TXT by HTML5 UP</title>
+	<title>Stop The Hacks</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="../../assets/css/main.css" />
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body class="homepage">
@@ -28,36 +32,25 @@
 				</header>
 
 			<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li class="current"><a href="index.html">Home</a></li>
-						<li>
-							<a href="#">Dropdown</a>
-							<ul>
-								<li><a href="#">Lorem ipsum dolor</a></li>
-								<li><a href="#">Magna phasellus</a></li>
-								<li>
-									<a href="#">Phasellus consequat</a>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Phasellus consequat</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Veroeros feugiat</a></li>
-							</ul>
-						</li>
-						<li><a href="left-sidebar.html">Left Sidebar</a></li>
-						<li><a href="right-sidebar.html">Right Sidebar</a></li>
-						<li><a href="no-sidebar.html">No Sidebar</a></li>
-					</ul>
-				</nav>
+			<nav id="nav">
+				<ul>
+					<li><a href="/home">Home</a></li>
+					<li>
+						<a href="#">Engagement</a>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor</a></li>
+							<li><a href="#">Magna phasellus</a></li>
 
-			<!-- Banner -->
+							<li><a href="/">Logout</a></li>
+						</ul>
+					</li>
+					<li><a href="/">Logout</a></li>
+				</ul>
+			</nav>
 
 					<section id="banner">
-						<h2>Hey,<br> <br> <%=agreements[0].signer%></h2>
+						<h1>Employee Portal </h1>
+						<h2>Employee: <%=user[0].sec_name%> <h2>
 
 					</section>
 
@@ -71,7 +64,7 @@
 
 								<!-- Features -->
 									<section class="box features">
-										<h2 class="major"><span>My Engagements</span></h2>
+										<h2 class="major"><span><%=agreements[0].signer %> Engagements</span></h2>
 
 											<div class="row">
 												<% for(var i=0; i<agreements.length; i++) {%>
@@ -81,7 +74,7 @@
 
 
 														<section class="box feature">
-															<button><a href='/agreements/<%=agreements[i].agreement_id%>'> Engagement <%= i+1 %> </a></button>
+															<button><a href='/empAgreements/<%=agreements[i].agreement_id%>'> Engagement <%= i+1 %> </a></button>
 
 														</section>
 
@@ -93,12 +86,126 @@
 											</div>
 
 									</section>
-
+									<div align="center">
+									<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#remove">Remove Engagement</button>
+										<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add">Add Engagment</button>
+									</div>
 							</div>
 						</div>
 
+
+						<div class="container">
+
+							<!-- Trigger the modal with a button -->
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="add" role="dialog">
+								<div class="modal-dialog">
+
+									<div class="container">
+
+							        <div class="login-wrap">
+							        <div class ="login-html">
+							      	<div class="login-form">
+							          <h2> <u> Add Engagment </u></h2>
+							          <form action ="/addAgreement/<%=user[0].username%>/<%=name%>" method ="post">
+							          <div class="group">
+							  					<label for="user" class="label">Signer</label>
+							  					<input id="user" name="signer" type="text" class="input" value="<%=agreements[0].signer %>" required>
+							  				</div>
+												<div class="group">
+												 <label for="user" class="label">Report Date</label>
+												 <input id="user" name="effective_date" type="date" class="input" required>
+											 </div>
+											 <div class="group">
+												 <label for="user" class="label">Scope</label>
+												 <input id="user" name="scope" type="text" class="input" required>
+											 </div>
+							          <div class="group">
+							          <input type="submit" class="button" value="Add Engagement">
+							          </div>
+							        </form>
+							          <div class="hr"></div>
+							          <div class="foot-lnk">
+							            <a href="#forgot">Forgot Password?</a><br>
+							            <a href="http://codepen.io/khadkamhn/pen/ZGvPLo">Design by Mohan Khadka</a>
+							          </div>
+							    </div>
+							  </div>
+
+							</div>
+							</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="container">
+
+							<!-- Trigger the modal with a button -->
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="remove" role="dialog">
+								<div class="modal-dialog">
+
+									<div class="container">
+
+							        <div class="login-wrap">
+							        <div class ="login-html">
+							      	<div class="login-form">
+							          <h2 style="color:white;"> <u> Remove Engagements </u></h2>
+							          <form action = "/removeAgreement/<%=user[0].username %>/<%=name %>" method ="POST">
+
+													<% for(var i=0; i<agreements.length; i++) {%>
+										<div class="group">
+
+											<input style="text-color:white;" type="radio" name="agree_id" value="<%= agreements[i].agreement_id %>">
+											<h1 style="color:white;"> Engagement <%=i+1 %> </h1>
+											</div>
+
+
+
+													<% } %>
+
+
+
+
+
+
+
+							          <div class="group">
+							            <input type="submit" class="button" value="Remove">
+							          </div>
+							        </form>
+							          <div class="hr"></div>
+							          <div class="foot-lnk">
+							            <a href="http://codepen.io/khadkamhn/pen/ZGvPLo">Design by Mohan Khadka</a>
+							          </div>
+							    </div>
+							  </div>
+
+							</div>
+							</div>
+
+								</div>
+							</div>
+
+						</div>
+
+
+
 					</div>
 				</div>
+
+
+
+
+
+
+
 
 			<!-- Footer -->
 				<footer id="footer" class="container">
@@ -133,13 +240,13 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/skel-viewport.min.js"></script>
-			<script src="../assets/js/util.js"></script>
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/skel-viewport.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="../assets/js/main.js"></script>
+			<script src="../../assets/js/main.js"></script>
 
 	</body>
 </html>

@@ -6,11 +6,15 @@
 -->
 <html>
 	<head>
-		<title>Stop The Hacks</title>
+		<title>Agreement Details</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="../assets/css/main.css" />
+
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
@@ -29,14 +33,13 @@
 			<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="/home">Home</a></li>
+						<li><a href="/employee/">Home</a></li>
 						<li>
-							<a href="#">Engagement</a>
+							<a href="#">Clients</a>
 							<ul>
 								<li><a href="#">Lorem ipsum dolor</a></li>
 								<li><a href="#">Magna phasellus</a></li>
-
-								<li><a href="/">Logout</a></li>
+								<li><a href="#">Veroeros feugiat</a></li>
 							</ul>
 						</li>
 						<li><a href="/">Logout</a></li>
@@ -73,10 +76,10 @@
 												<table class="responstable">
 
 													<tr>
-														<th><b> <u> Vulnerability</u></b></th>
+														<th align="right"><b> <u> Vulnerability</u></b></th>
 
-														<th><b> <u>Action</u></b></th>
-														<th><b> <u>Status</u></b></th>
+														<th align="center"><b> <u>Action</u></b></th>
+														<th align="center"><b> <u>Status</u></b></th>
 
 													</tr>
 													<div class="row">
@@ -87,10 +90,10 @@
 																<td align="center"><%=engagementinfo[i].action %></td>
 
 																<%if (engagementinfo[i].status=='Open') { %>
-																	<td align ="center"><button class= "open"><a href ="/update/<%=engagementinfo[i].vulnerability %>/<%=engagementinfo[i].agreement_id %>/Remediated"><%=engagementinfo[i].status %></a></button></td>
+																	<td align ="center"><button class= "open"><a href ="/empupdate/<%=engagementinfo[i].vulnerability %>/<%=engagementinfo[i].agreement_id %>/Remediated"><%=engagementinfo[i].status %></a></button></td>
 																		<% } %>
 																		<%if (engagementinfo[i].status=='Remediated') { %>
-																			<td align ="center"> <button><a href ="/update/<%=engagementinfo[i].vulnerability %>/<%=engagementinfo[i].agreement_id %>/Open"><%=engagementinfo[i].status %></a></button></td>
+																			<td align ="center"> <button><a href ="/empupdate/<%=engagementinfo[i].vulnerability %>/<%=engagementinfo[i].agreement_id %>/Open"><%=engagementinfo[i].status %></a></button></td>
 																				<% } %>
 
 															</tr>
@@ -109,7 +112,10 @@
 
 
 
+                        <div align="center">
 
+                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add">Add Report</button>
+                        </div>
 
 										</section>
 
@@ -117,6 +123,74 @@
 							</div>
 
 						</div>
+
+            <div class="container">
+
+							<!-- Trigger the modal with a button -->
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="add" role="dialog">
+								<div class="modal-dialog">
+
+									<div class="container">
+
+							        <div class="login-wrap">
+							        <div class ="login-html">
+							      	<div class="login-form">
+							          <h2> <u> Add Report </u></h2>
+
+							          <form action ="/addReport/<%=agreement[0].agreement_id %>" method ="post">
+                          <div class="group">
+  							  					<label for="user" class="label">Engagment ID <br> <b> DO NOT CHANGE THIS FIELD</b></label>
+
+                              <input id="user" name="engagement" type="text" class="input" value= "<%=engagementinfo[0].report_id %>" required>
+
+
+  							  				</div>
+                        <div class="group">
+							  					<label for="user" class="label">Vulnerability</label>
+							  					<input id="user" name="cve" type="text" class="input" required>
+							  				</div>
+												<div class="group">
+												 <label for="user" class="label">Action</label>
+												 <input id="user" name="action" type="text" class="input" required>
+											 </div>
+
+							          <div class="group">
+							          <input type="submit" class="button" value="Add Report">
+							          </div>
+							        </form>
+							          <div class="hr"></div>
+							          <div class="foot-lnk">
+							            <a href="#forgot">Forgot Password?</a><br>
+							            <a href="http://codepen.io/khadkamhn/pen/ZGvPLo">Design by Mohan Khadka</a>
+							          </div>
+							    </div>
+							  </div>
+
+							</div>
+							</div>
+
+								</div>
+							</div>
+
+						</div>
+
+
+            <div class="container">
+
+              <!-- Trigger the modal with a button -->
+
+
+
+
+
+
+
+
+
+
 					</div>
 
 			<!-- Footer -->

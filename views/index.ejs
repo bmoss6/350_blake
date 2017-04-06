@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>TXT by HTML5 UP</title>
+		<title>Stop The Hacks</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -57,7 +57,7 @@
 	<div class="login-html">
     <h2> <u>Employee Login</u></h2><br>
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">New Employee</label>
 		<div class="login-form">
 			<div class="sign-in-htm">
         <form action = "/loginEmployee" method ="post">
@@ -84,23 +84,20 @@
 				</div>
 			</div>
 			<div class="sign-up-htm">
-        <form action = "/loginCustomer" method ="post">
+        <form action = "/newEmployee" method ="post">
+				<div class="group">
+					<label for="user" class="label">Name</label>
+					<input name= "name" id="user" type="text" class="input" required>
+				</div>
 				<div class="group">
 					<label for="user" class="label">Username</label>
-					<input name= "username" id="user" type="text" class="input">
+					<input name= "username" id="user" type="text" class="input" required>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Password</label>
-					<input name= "password" id="pass" type="password" class="input" data-type="password">
+					<input name= "password" id="pass" type="password" class="input" data-type="password" required>
 				</div>
-				<div class="group">
-					<label for="pass" class="label">Repeat Password</label>
-					<input id="pass" type="password" class="input" data-type="password">
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Email Address</label>
-					<input id="pass" type="text" class="input">
-				</div>
+
 				<div class="group">
 					<input type="submit" class="button" value="Sign Up">
 				</div>
